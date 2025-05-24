@@ -77,9 +77,10 @@ class Menu:
         while(True):
             self.tipo = input("Você é um médico(M) ou paciente(P)?\n--> ")
             self.loginOuCadastro()
-            if(self.tipo == "M"):
-                self.opcoes = ["1- Cadastrar Paciente", "2- Remover Paciente", "3- Listar Pacientes", "4- Marcar Consulta", "5- Listar Consultas", "6- Desmarcar Consulta"]
-                while(self.gerenciador.logado):
+            
+            while(self.gerenciador.logado):
+                if(self.tipo == "M"):
+                    self.opcoes = ["1- Cadastrar Paciente", "2- Remover Paciente", "3- Listar Pacientes", "4- Marcar Consulta", "5- Listar Consultas", "6- Desmarcar Consulta", "7- Voltar"]
                     self.desenhaMenu()
                     escolha = int(input("--> "))
                     match escolha:
@@ -95,10 +96,11 @@ class Menu:
                             self.gerenciador.logado.listarConsultas()
                         case 6:
                             self.desmarcarConsulta()
+                        case 7:
+                            self.gerenciador.logado = None
                         
-            if(self.tipo == "P"):
-                self.opcoes = ["1- Desmarcar consulta", "2- Listar consultas"]
-                while(self.gerenciador.logado):
+                if(self.tipo == "P"):
+                    self.opcoes = ["1- Desmarcar consulta", "2- Listar consultas", "3- Voltar"]
                     self.desenhaMenu()
                     escolha = int(input("--> "))
                     match escolha:
@@ -106,5 +108,7 @@ class Menu:
                             self.desmarcarConsulta()
                         case 2:
                             self.gerenciador.logado.listarConsultas()
+                        case 3:
+                            self.gerenciador.logado = None
         #self.desenhaMenu()
         # opcao = input("\nQual opção você deseja?\n--> ")
