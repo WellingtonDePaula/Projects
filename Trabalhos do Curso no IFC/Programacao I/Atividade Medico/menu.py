@@ -13,21 +13,14 @@ class Menu:
 
             if(escolha == 1):
                 cpf = input("Digite seu cpf: ")
-                self.gerenciador.logado = self.logar(cpf)
+                senha = input("Digite sua senha: ")
+                self.gerenciador.logar(self.tipo, cpf, senha)
             
             if(escolha == 2):
                 if(self.tipo == "M"):
                     self.cadastrarMedico()
                 if(self.tipo == "P"):
-                    self.cadastrarPaciente()
-            
-    
-    def logar(self, login):
-        if(self.tipo == "M"):
-            result = self.gerenciador.procuraMedico(login)
-        if(self.tipo == "P"):
-            result = self.gerenciador.procuraPaciente(login)
-        return result
+                    self.cadastrarPaciente()       
 
     def cadastrarMedico(self):
         #self, nome, email, dt_nasc, cpf, crm, espec
@@ -35,9 +28,10 @@ class Menu:
         email = input("Email -> ")
         dt_nasc = input("Data de Nascimento -> ")
         cpf = input("Cpf -> ")
+        senha = input("Senha -> ")
         crm = input("CRM -> ")
         espec = input("Especialização -> ")
-        self.gerenciador.cadastrarMedico(nome, email, dt_nasc, cpf, crm, espec)
+        self.gerenciador.cadastrarMedico(nome, email, dt_nasc, cpf, senha, crm, espec)
 
     def cadastrarPaciente(self):
         #self, nome, email, dt_nasc, cpf, telefone, tps
@@ -45,9 +39,10 @@ class Menu:
         email = input("Email -> ")
         dt_nasc = input("Data de Nascimento -> ")
         cpf = input("Cpf -> ")
+        senha = input("Senha -> ")
         telefone = input("Telefone -> ")
         tps = input("Tipo Sanguíneo -> ")
-        self.gerenciador.cadastrarPaciente(nome, email, dt_nasc, cpf, telefone, tps)
+        self.gerenciador.cadastrarPaciente(nome, email, dt_nasc, cpf, senha, telefone, tps)
 
     def removerPaciente(self):
         cpf = input("Cpf do paciente a ser removido --> ")
@@ -56,13 +51,11 @@ class Menu:
     def marcarConsulta(self):
         data = input("Data da consulta --> ")
         horario = input("Horário da consulta --> ")
-        
-        pacienteCpf = input("Cpf do paciente da consulta --> ")
-        paciente = self.gerenciador.procuraPaciente(pacienteCpf)
+        cpfPaciente = input("Cpf do paciente da consulta --> ")
 
         # print(paciente)
 
-        self.gerenciador.logado.marcarConsulta(data, horario, paciente)
+        self.gerenciador.marcarConsulta(data, horario, cpfPaciente)
 
     def desmarcarConsulta(self):
         data = input("Data da consulta --> ")
