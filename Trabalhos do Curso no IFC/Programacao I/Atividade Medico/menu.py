@@ -60,7 +60,7 @@ class Menu:
     def desmarcarConsulta(self):
         data = input("Data da consulta --> ")
         horario = input("Horário da consulta --> ")
-        self.gerenciador.logado.desmarcarConsulta(data, horario)
+        self.gerenciador.desmarcarConsulta(data, horario)
 
     def desenhaMenu(self):
         for opcao in self.opcoes:
@@ -82,11 +82,11 @@ class Menu:
                         case 2:
                             self.removerPaciente()
                         case 3:
-                            self.gerenciador.logado.listarPacientes()
+                            self.gerenciador.listarPacientes()
                         case 4:
                             self.marcarConsulta()
                         case 5:
-                            self.gerenciador.logado.listarConsultas()
+                            self.gerenciador.listarConsultas()
                         case 6:
                             self.desmarcarConsulta()
                         case 7:
@@ -100,8 +100,6 @@ class Menu:
                         case 1:
                             self.desmarcarConsulta()
                         case 2:
-                            self.gerenciador.logado.listarConsultas()
+                            self.gerenciador.listarConsultas()
                         case 3:
                             self.gerenciador.logado = None
-        #self.desenhaMenu()
-        # opcao = input("\nQual opção você deseja?\n--> ")
